@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import DropdownList from './DropdownList';
-import './main.css'; // Add your own styling
+import React, { useState, useEffect } from "react";
+import DropdownList from "./DropdownList";
+import "./main.css"; // Add your own styling
 
 const Dropdown = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -12,11 +12,11 @@ const Dropdown = () => {
     // Fetch users from your API
     const fetchUsers = async () => {
       try {
-        const response = await fetch('https://dummyapi.online/api/users');
+        const response = await fetch("https://dummyapi.online/api/users");
         const data = await response.json();
         setUsers(data || []); // Ensure data is an array or default to an empty array
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       }
     };
 
@@ -33,7 +33,7 @@ const Dropdown = () => {
     const updatedUsers = users.filter((u) => u !== user);
     setUsers(updatedUsers);
     setSelectedUsers([...selectedUsers, user]);
-    setInputValue('');
+    setInputValue("");
     setShowDropdown(false);
   };
 
@@ -47,27 +47,27 @@ const Dropdown = () => {
     <div className="dropdown-container">
       <div className="input-container">
         <div className="chip-container">
-            {selectedUsers.map((user) => (
-                <div key={user.id} className="chip">
-                <span>{user.name}</span>
-                <button onClick={() => handleChipRemove(user)}>X</button>
+          {selectedUsers.map((user) => (
+            <div key={user.id} className="chip">
+              <span>{user.name}</span>
+              <button onClick={() => handleChipRemove(user)}>X</button>
             </div>
-            ))}
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Type to filter users"
-        />
+          ))}
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Type to filter users"
+          />
         </div>
       </div>
-        {showDropdown && (
-            <DropdownList
-            items={users}
-            inputValue={inputValue}
-            onItemClick={handleUserClick}
-            />
-        )}
+      {showDropdown && (
+        <DropdownList
+          items={users}
+          inputValue={inputValue}
+          onItemClick={handleUserClick}
+        />
+      )}
     </div>
   );
 };
