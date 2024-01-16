@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DropdownList from "./DropdownList";
-import "./main.css"; // Add your own styling
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import "./main.css"; 
 
 const Dropdown = () => {
   const [inputValue, setInputValue] = useState("");
@@ -14,7 +16,7 @@ const Dropdown = () => {
       try {
         const response = await fetch("https://dummyapi.online/api/users");
         const data = await response.json();
-        setUsers(data || []); // Ensure data is an array or default to an empty array
+        setUsers(data || []); 
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -49,7 +51,7 @@ const Dropdown = () => {
         <div className="chip-container">
           {selectedUsers.map((user) => (
             <div key={user.id} className="chip">
-              <span>{user.name}</span>
+              <span><FontAwesomeIcon icon={faUser} />{user.name}</span>
               <button onClick={() => handleChipRemove(user)}>X</button>
             </div>
           ))}

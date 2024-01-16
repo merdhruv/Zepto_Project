@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const DropdownList = ({ items, inputValue, onItemClick }) => {
   return (
@@ -15,7 +17,9 @@ const DropdownList = ({ items, inputValue, onItemClick }) => {
             className="dropdown-item"
             onClick={() => onItemClick(user)}
           >
-            <span>{user.name} </span>
+            <span>
+                <FontAwesomeIcon icon={faUser} />
+                {user.name} </span>
           </div>
         ))}
     </div>
